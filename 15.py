@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import csv
 
 
-API_TOKEN = '8393103076:AAFisSEeF9OoD0uxhO59kA8q3U7ePQTMykA'
+API_TOKEN = 'botfather TOKEN'
 bot = telebot.TeleBot(API_TOKEN)
 
 
