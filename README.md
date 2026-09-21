@@ -1,53 +1,91 @@
-Hamrah Mechanic Telegram Bot
+# 🚗 ربات تلگرام ماشین‌یاب همراه مکانیک (Find-Car-Telebot)
 
-A Telegram bot built with Python and TeleBot that enables users to search and retrieve vehicle information from the Hamrah Mechanic website directly through Telegram.
+ربات تلگرام هوشمند برای جستجو و دریافت آخرین آگهی‌های خودرو از وب‌سایت **همراه مکانیک** بر اساس نوع شاسی (سدان، شاسی‌بلند، هاچبک، وانت، ون)، وضعیت کارکرد (صفر / کارکرده) و بازه قیمتی دلخواه.
 
-Overview
+---
 
-This project automates the process of searching vehicle listings on the Hamrah Mechanic platform. Users can submit their requests through Telegram, and the bot will fetch, process, and return the requested information in a simple and user-friendly format.
+## ✨ ویژگی‌ها (Features)
 
-The bot is designed primarily for Persian-speaking users and provides an easy way to access car-related information without manually browsing the website.
+- 🔍 **استخراج هوشمند آگهی‌ها**: دریافت مستقیم داده‌ها از زیرساخت Next.js همراه مکانیک به صورت دقیق و ساختاریافته (همراه با فال‌بک HTML).
+- 🏷️ **فیلترهای متنوع**: دسته‌بندی بر اساس نوع بدنه، کارکرد (صفر و کارکرده) و بازه‌های قیمتی متنوع.
+- 📱 **رابط کاربری اینلاین در تلگرام**: منوهای شیشه‌ای (Inline Keyboard) با امکان بازگشت (Back) بدون سردرگمی.
+- 💬 **کارت‌های اطلاعاتی جذاب**: نمایش نام خودرو، سال تولید، کارکرد دقیق، قیمت به تومان، موقعیت مکانی و لینک مستقیم به آگهی.
+- 📊 **خروجی اکسل (CSV)**: ذخیره‌سازی نتایج در فایل `car.csv` با انکودینگ استاندارد `UTF-8 with BOM` (بدون بهم‌ریختگی حروف فارسی در نرم‌افزار Excel).
+- 🛡️ **مدیریت خطای پایدار**: جلوگیری از کرش ربات در صورت قطع شبکه یا عدم وجود آگهی.
+- 🔐 **پیکربندی امن**: پشتیبانی از متغیرهای محیطی و فایل `.env` جهت حفظ امنیت توکن ربات.
 
-Features
+---
 
-- Telegram-based user interface
-- Automated interaction with the Hamrah Mechanic website
-- Vehicle information retrieval based on user requests
-- Fast and convenient access to search results
-- Persian language support
-- Built with Python and TeleBot
+## 🛠️ پیش‌نیازها و نصب (Installation)
 
-Technologies Used
+### ۱. کلون کردن مخزن
+```bash
+git clone https://github.com/negin2314/Find-Car-Telebot.git
+cd Find-Car-Telebot
+```
 
-- Python
-- TeleBot (pyTelegramBotAPI)
-- Web Scraping / Browser Automation
-- Requests
-- BeautifulSoup / Selenium (depending on implementation)
+### ۲. ایجاد محیط مجازی (اختیاری ولی توصیه می‌شود)
+```bash
+python -m venv venv
+# فعال‌سازی در ویندوز:
+venv\Scripts\activate
+# فعال‌سازی در لینوکس / مک:
+source venv/bin/activate
+```
 
-Installation
+### ۳. نصب وابستگی‌ها
+```bash
+pip install -r requirements.txt
+```
 
-1. Clone the repository:
-   
-   git clone https://github.com/your-username/your-repository.git
+### ۴. تنظیم توکن ربات تلگرام
+یک فایل بنام `.env` در پوشه پروژه ایجاد کنید (می‌توانید از `.env.example` کپی بگیرید) و توکن دریافتی از [@BotFather](https://t.me/BotFather) را در آن قرار دهید:
 
-2. Install dependencies:
-   
-   pip install -r requirements.txt
+```env
+BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrsTUVwxyz
+```
 
-3. Configure your Telegram Bot Token.
+یا در ترمینال به عنوان متغیر محیطی ست کنید:
+```bash
+# در ویندوز (PowerShell):
+$env:BOT_TOKEN="your_token_here"
 
-4. Run the bot:
-   
-   python main.py
+# در لینوکس / مک:
+export BOT_TOKEN="your_token_here"
+```
 
-Usage
+---
 
-1. Open the bot in Telegram.
-2. Submit your search request.
-3. The bot searches the Hamrah Mechanic website.
-4. Results are returned directly in the chat.
+## 🚀 اجرا (Usage)
 
-Disclaimer
+برای اجرای ربات دستور زیر را اجرا کنید:
 
-This project is an unofficial tool and is not affiliated with or endorsed by Hamrah Mechanic. All data belongs to its respective owners and is retrieved from publicly accessible sources.
+```bash
+python main.py
+```
+
+*(برای سازگاری با نسخه‌های پیشین، اجرای `python 15.py` نیز پشتیبانی می‌شود).*
+
+سپس در تلگرام وارد ربات خود شده و دستور `/start` را ارسال کنید.
+
+---
+
+## 📁 ساختار پروژه (Project Structure)
+
+```text
+Find-Car-Telebot/
+├── main.py              # نقطه ورود اصلی و مدیریت هندلرهای تلگرام
+├── scraper.py           # ماژول اختصاصی استخراج داده‌ها از همراه مکانیک
+├── 15.py                # رپر سازگاری با نسخه قبلی
+├── requirements.txt     # کتابخانه‌های مورد نیاز
+├── .env.example         # نمونه فایل تنظیم توکن
+├── .gitignore           # فایل‌های نادیده‌گرفته‌شده در گیت
+├── LICENSE              # مجوز نرم‌افزار
+└── README.md            # راهنمای پروژه
+```
+
+---
+
+## ⚠️ سلب مسئولیت (Disclaimer)
+
+این پروژه یک ابزار غیررسمی بوده و به وب‌سایت همراه مکانیک وابستگی مستقیم ندارد. کلیه حقوق و داده‌ها متعلق به صاحبان مربوطه می‌باشد.
