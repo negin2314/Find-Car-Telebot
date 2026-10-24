@@ -1,7 +1,8 @@
 # Environment and secrets
 .env
-.env.local
-API_TOKEN
+.env.*
+*.env
+!.env.example
 
 # Output and temp files
 car.csv

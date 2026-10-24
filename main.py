@@ -8,7 +8,11 @@ from telebot import types
 # Optional python-dotenv support
 try:
     from dotenv import load_dotenv
-    load_dotenv()
+    _env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+    if os.path.exists(_env_path):
+        load_dotenv(dotenv_path=_env_path)
+    else:
+        load_dotenv()
 except ImportError:
     pass
 
@@ -24,8 +28,9 @@ logger = logging.getLogger(__name__)
 # Retrieve bot token from environment variables
 DUMMY_TOKEN = "000000000:AAA_placeholder_token_for_validation"
 raw_token = os.getenv("BOT_TOKEN") or os.getenv("API_TOKEN")
+PLACEHOLDER_TOKENS = {"botfather TOKEN", "your_bot_token_here", "123456789:ABCdefGHIjklMNOpqrsTUVwxyz"}
 
-if raw_token and raw_token.strip() and raw_token.strip() != "botfather TOKEN":
+if raw_token and raw_token.strip() and raw_token.strip() not in PLACEHOLDER_TOKENS:
     API_TOKEN = raw_token.strip()
     IS_CONFIGURED = True
 else:
