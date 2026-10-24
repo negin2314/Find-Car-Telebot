@@ -2,6 +2,14 @@ import logging
 import os
 import sys
 from typing import Optional
+
+# Ensure standard output/error supports UTF-8 on Windows consoles
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 import telebot
 from telebot import types
 
